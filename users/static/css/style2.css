@@ -19,6 +19,26 @@ header {
     padding: 1rem 0;
 }
 
+a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#delete {
+    color: red;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#delete:hover {
+    text-decoration: underline;
+}
+
 header h1 {
     text-align: center;
     margin: 0;
@@ -60,30 +80,36 @@ main {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Styling for forms */
-form {
-    margin: 0 auto;
-    max-width: 500px;
-}
-
-form input, form button {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
 
 form button {
-    background: #333;
-    color: #fff;
-    border: none;
-    cursor: pointer;
+  display: inline;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  border-radius: 6px;
+  border: none;
+
+  background: #6E6D70;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+  color: #DFDEDF;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+form button:focus {
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  outline: 0;
 }
 
 form button:hover {
     background: #555;
 }
+
+
+
+
 
 /* Styling for the footer */
 footer {

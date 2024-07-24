@@ -5,13 +5,20 @@
     {% if user.profile_image %}
         <div>
             <label>Current Profile Image:</label>
-            <img src="{{ user.profile_image.url }}" alt="Profile Image Thumbnail" style="width: 150px; height: 150px;"/>
+            <img src="{{ user.profile_image.url }}" alt="{{ user.username }}" style="width: 150px; height: 150px;"/>
         </div>
     {% endif %}
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
+        <div class="form-group">
+            {{ form.profile_image.errors }}
+            {{ form.profile_image }}
+        </div>
+        <div class="form-group">
+            {{ form.bio.errors }}
+            {{ form.bio.label_tag }} {{ form.bio }}
+        </div>
         <button type="submit">Save changes</button>
     </form>
-    <a href="{% url 'profile_delete' %}">Delete Account</a>
+    <a href="{% url 'profile_delete' %}" id="delete">Delete Account</a>
 {% endblock %}
