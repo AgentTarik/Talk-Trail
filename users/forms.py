@@ -50,3 +50,15 @@ class PostForm(forms.ModelForm):
         widgets = {
             'content': forms.Textarea(attrs={'placeholder': 'What’s on your mind?', 'rows': 4}),
         }
+
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['bio', 'profile_image']
+
+
+class UserDeleteForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = []

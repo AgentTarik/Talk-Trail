@@ -1,0 +1,11 @@
+{% extends 'base_logged.html' %}
+
+{% block content %}
+    <h1>Confirm Account Deletion</h1>
+    <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, delete my account</button>
+        <a href="{% url 'profile_edit' %}">No, go back</a>
+    </form>
+{% endblock %}
