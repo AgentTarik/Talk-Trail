@@ -25,24 +25,18 @@ header h1 {
 }
 
 nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-nav form {
-            margin: 0;
-        }
+    display: inline;
+    text-align: center;
+}
 
 nav ul {
     list-style: none;
     padding: 0;
     text-align: center;
-    display: flex;
 }
 
 nav ul li {
-    display: flex;
+    display: inline;
     margin-right: 15px;
 }
 

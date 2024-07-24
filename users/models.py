@@ -1,7 +1,8 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
-from django.contrib.auth.models import User
-import hashlib
+from django.conf import settings
+from PIL import Image
+import os
 
 
 class CustomUserManager(BaseUserManager):

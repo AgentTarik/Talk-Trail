@@ -2,6 +2,12 @@
 
 {% block content %}
     <h1>Edit Profile</h1>
+    {% if user.profile_image %}
+        <div>
+            <label>Current Profile Image:</label>
+            <img src="{{ user.profile_image.url }}" alt="Profile Image Thumbnail" style="width: 150px; height: 150px;"/>
+        </div>
+    {% endif %}
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
