@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}My Site{% endblock %}</title>
+    <title>{% block title %}Talk Trail{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style2.css' %}">
 </head>
 <body>
@@ -14,6 +14,12 @@
             <ul>
                 <li><h2>Welcome {{ user.username }}</h2></li>
                 <li><a href="{% url 'home' %}">Home</a></li>
+                <li>
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                    </form>
+                </li>
             </ul>
 
         </nav>
