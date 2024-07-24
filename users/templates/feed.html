@@ -1,0 +1,32 @@
+{% extends 'base_logged.html' %}
+
+{% block title %}Feed{% endblock %}
+
+{% block content %}
+  <h2>Feed</h2>
+  
+  <section class="post-form">
+    <h3>Post a Message</h3>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Post</button>
+    </form>
+  </section>
+
+  <section class="posts">
+    <h3>All Posts</h3>
+    {% if posts %}
+      <ul>
+        {% for post in posts %}
+          <li>
+            <strong>{{ post.user.username }}</strong>: {{ post.content }}<br>
+            <small>{{ post.created_at }}</small>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No posts yet.</p>
+    {% endif %}
+  </section>
+{% endblock %}
