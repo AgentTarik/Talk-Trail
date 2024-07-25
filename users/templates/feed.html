@@ -1,6 +1,6 @@
 {% extends 'base_logged.html' %}
 
-{% block title %}Feed{% endblock %}
+{% block title %}Feed Da Tropa{% endblock %}
 
 {% block content %}
   <h2>Feed</h2>
@@ -20,7 +20,10 @@
       <ul>
         {% for post in posts %}
           <li>
-            <a href="{% url 'user_profile' post.user.username %}">{{ post.user.username }}</a>: {{ post.content }}<br>
+            <a href="{% url 'user_profile' post.user.username %}">{% if post.user.profile_image %}
+              <img src="{{ post.user.profile_image.url }}" alt="{{ post.user.username }}" style="width: 30px; height: 30px;"/>
+            {% endif %}
+              {{ post.user.username }}</a>: {{ post.content }}<br>
             <small>{{ post.created_at }}</small>
           </li>
         {% endfor %}
