@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import django_heroku
+import dj_database_url
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,10 +26,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-qk=gy7&$1)-=&9b32-5&s(4h-(zlxvvdp)9)pwuq$2s=43h#!&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
+# Activate Django-Heroku.
+django_heroku.settings(locals())
 
 # Application definition
 
@@ -74,7 +78,7 @@ WSGI_APPLICATION = 'talk_trail.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+''''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -85,14 +89,13 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+'''
 
-'''
+
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
-    )
+    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
-'''
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -134,9 +137,22 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#MEDIA_URL = '/media/'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+# Amazon S3 settings
+AWS_ACCESS_KEY_ID = os.environ.get('AKIAQE3ROWJYAMENTCEA')
+AWS_SECRET_ACCESS_KEY = os.environ.get('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')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('talktrail')
+AWS_S3_REGION_NAME = os.environ.get('sa-east-1')
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
+AWS_LOCATION = 'media'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+DEFAULT_FILE_STORAGE = 'your_project_name.storage_backends.MediaStorage'
+
 
 
 AUTH_USER_MODEL = 'users.UserProfile'
@@ -144,7 +160,7 @@ LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/feed/'
 
 SESSION_COOKIE_AGE = 1209600
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 
 # Default primary key field type
