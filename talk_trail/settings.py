@@ -151,7 +151,7 @@ AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 
 AWS_LOCATION = 'media'
 MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
-DEFAULT_FILE_STORAGE = 'your_project_name.storage_backends.MediaStorage'
+DEFAULT_FILE_STORAGE = 'talkTrail.storage_backends.MediaStorage'
 
 
 
