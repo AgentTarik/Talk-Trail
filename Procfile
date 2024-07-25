@@ -1,1 +1,1 @@
-web: gunicorn talkTrail.wsgi
+web: gunicorn talkTrail.wsgi --log-file -
