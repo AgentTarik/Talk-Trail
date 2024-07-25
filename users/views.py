@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, FormView, TemplateView, UpdateView, DeleteView
+from django.views.generic import CreateView, ListView, FormView, TemplateView, UpdateView, DeleteView, DetailView
 from django.contrib.auth import login
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.views import LoginView as DjangoLoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from .models import UserProfile, Post
 from .forms import UserRegisterForm, PostForm, UserProfileForm, UserDeleteForm
 from django.contrib.auth.forms import AuthenticationForm
@@ -64,6 +64,15 @@ class UserProfileDeleteView(LoginRequiredMixin, DeleteView):
     def delete(self, request, *args, **kwargs):
         self.get_object().posts.all().delete()
         return super().delete(request, *args, **kwargs)
+
+class UserProfileView(DetailView):
+    model = UserProfile
+    template_name = 'user_profile.html'
+    context_object_name = 'profile'
+
+    def get_object(self):
+        username = self.kwargs.get('username')
+        return get_object_or_404(UserProfile, username=username)
 
 
 class FeedView(LoginRequiredMixin, FormView):

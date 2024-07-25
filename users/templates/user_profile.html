@@ -1,0 +1,9 @@
+{% extends 'base_logged.html' %}
+
+{% block content %}
+<h1>{{ profile.username }}'s Profile</h1>
+{% if profile.profile_image %}
+    <img src="{{ profile.profile_image.url }}" alt="{{ profile.username }}'s profile picture" style="width: 150px; height: 150px;">
+{% endif %}
+<p>{{ profile.bio }}</p>
+{% endblock %}

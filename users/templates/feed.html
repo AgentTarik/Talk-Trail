@@ -20,7 +20,7 @@
       <ul>
         {% for post in posts %}
           <li>
-            <strong>{{ post.user.username }}</strong>: {{ post.content }}<br>
+            <a href="{% url 'user_profile' post.user.username %}">{{ post.user.username }}</a>: {{ post.content }}<br>
             <small>{{ post.created_at }}</small>
           </li>
         {% endfor %}

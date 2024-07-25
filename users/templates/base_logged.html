@@ -15,6 +15,7 @@
                 <li><h2>Welcome {{ user.username }}</h2></li>
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'profile_edit' %}">Profile</a></li>
+                <li><a href="{% url 'feed' %}">Feed</a></li>
                 <li>
                     <form action="{% url 'logout' %}" method="post">
                         {% csrf_token %}
